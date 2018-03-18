@@ -11,10 +11,10 @@
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/add">Add</a>
+            <a class="nav-link" href="/post/create">Add</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/search">Search</a>
+            <a class="nav-link" href="/post">Search</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">

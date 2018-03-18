@@ -19,7 +19,8 @@ class CreatePostsTable extends Migration
             $table->text('body');
             $table->integer('price');
             $table->integer('category_id');
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

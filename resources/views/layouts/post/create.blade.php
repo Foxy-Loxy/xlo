@@ -4,7 +4,7 @@
 <div class="container">
 	<h2>Publish a post</h2>
 	<hr>
-	<form method="POST" action="/post">
+	<form method="POST" action="/post" enctype="multipart/form-data">
 		{{csrf_field()}}
 	  	<div class="form-group">
 	    	<label for="title">Title</label>
@@ -16,12 +16,16 @@
 	  	</div>
 	  	<div class="form-group">
 			<label for="category">Category</label>
-	        <input type="category" id="category" class="form-control" placeholder="Category" name="category" required>
+	        <input type="category" id="category_id" class="form-control" placeholder="Category" name="category_id">
 		</div>
 		<div class="form-group">
 			<label for="post-body">Photos: </label>
-		    <input name="img" id="img" type="file" multiple="" />
+		    <input name="image[]" id="image[]" type="file" enctype="multipart/form-data" multiple/>
 		</div>
+		<div class="form-group">
+	    	<label for="price">Price</label>
+	    	<input type="number" name="price" id="price" class="form-control"> UAH
+	  	</div>
 	<span class='label label-info' id="upload-file-info"></span>
 	  	<div class="form-group">
 	  		<button type="submit" class="btn btn-primary">Publish</button>
@@ -51,7 +55,9 @@
 
 	<script type="text/javascript">
 		$(document).ready(function () {
-		    $("#category").tokenInput("/get/categories");
+		    $("#category_id").tokenInput("/get/categories", {
+		    	tokenLimit : 1
+		    });
 		});
 
 		$(function(){

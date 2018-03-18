@@ -25,19 +25,28 @@ class RegisterController extends Controller
 			'name' => 'required',
 			'email' => 'required|email',
 			'phone' => 'required|regex:/(380)[0-9]{9}/',
-			'city' => 'required', 
+			'city_id' => 'required', 
 			'password' => 'required|confirmed|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/'
 		]);
+
+
 
 		$req = request([
     		'name',
     		'email',
     		'password',
     		'phone',
-    		'city'
-    	]);
+    		'city_id'
+		]);
+		
+		//dd(request());
+
+		//dd($req);
 
     	$req['password'] = bcrypt($req['password']);
+
+
+    	//dd($req);
 
 		$user = \App\User::create($req);
 

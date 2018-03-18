@@ -19,7 +19,7 @@ Auth::routes();
 //Main page Routes
 Route::get('/', 'PostController@index')->name('home');
 //Login routes
-Route::get('/login', 'SessionController@create');
+Route::get('/login', 'SessionController@create')->name('login');
 Route::post('/login', 'SessionController@store');
 Route::post('/logout', 'SessionController@destroy');
 //Register routes
@@ -31,7 +31,7 @@ Route::post('/post', 'PostController@store');
 Route::patch('/post/{id}', 'PostController@update');
 Route::get('/post/{id}/edit', 'PostController@edit');
 Route::delete('/post/{id}', 'PostController@destroy');
-Route::get('/post/id', 'PostController@show');
+Route::get('/post/{post}', 'PostController@show');
 //Routes for autocomplete field
 Route::get('/get/categories', 'AutoInputController@category');
 Route::get('/get/cities', 'AutoInputController@city');

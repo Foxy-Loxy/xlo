@@ -25,7 +25,7 @@
 			</div>
 			<div class="form-group">
 				<label for="city" class="sr-only">City</label>
-        		<input type="city" id="city" class="form-control" placeholder="City" name="city" required>
+        		<input type="city" id="city_id" class="form-control" placeholder="City" name="city_id" required>
 			</div>
 			<div class="form-group">
 				<label for="password" class="sr-only">Password</label>
@@ -65,7 +65,9 @@
 
     <script type="text/javascript">
 		$(document).ready(function () {
-		    $("#city").tokenInput("/get/cities");
+		    $("#city_id").tokenInput("/get/cities", {
+		    	tokenLimit : 1
+		    });
 		});
 	</script>
 
