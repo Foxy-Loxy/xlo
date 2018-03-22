@@ -1,8 +1,7 @@
 /* Example tokeninput style #1: Token vertical list*/
 ul.token-input-list {
     overflow: hidden; 
-    height: auto !important; 
-    height: 1%;
+
     width: 400px;
     border: 1px solid #999;
     cursor: text;
@@ -14,6 +13,40 @@ ul.token-input-list {
     background-color: #fff;
     list-style-type: none;
     clear: left;
+
+    display: block;
+    width: 100%;
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-color: #fff;
+    background-image: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-top-color: rgba(0, 0, 0, 0.15);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: rgba(0, 0, 0, 0.15);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: rgba(0, 0, 0, 0.15);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgba(0, 0, 0, 0.15);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    border-radius: .25rem;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
 }
 
 ul.token-input-list li {
@@ -26,12 +59,13 @@ ul.token-input-list li input {
     padding: 3px 8px;
     background-color: white;
     -webkit-appearance: caret;
+
+
 }
 
 li.token-input-token {
     overflow: hidden; 
-    height: auto !important; 
-    height: 1%;
+    height: 20px;
     margin: 3px;
     padding: 3px 5px;
     background-color: #d0efa0;
@@ -39,6 +73,8 @@ li.token-input-token {
     font-weight: bold;
     cursor: default;
     display: block;
+
+    
 }
 
 li.token-input-token p {
@@ -111,3 +147,10 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
     background-color: #d0efa0;
 }
 
+.token-input-input-token{
+    height: 20px;
+}
+
+#token-input-category_id {
+    margin: 0;
+}

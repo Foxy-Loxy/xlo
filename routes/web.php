@@ -23,10 +23,10 @@ Route::get('/login', 'SessionController@create')->name('login');
 Route::post('/login', 'SessionController@store');
 Route::post('/logout', 'SessionController@destroy');
 //Register routes
-Route::get('/register', 'RegisterController@create');
+Route::get('/register', 'RegisterController@create')->name('register');
 Route::post('/register', 'RegisterController@store');
 //Post routes
-Route::get('/post/create', 'PostController@create');
+Route::get('/post/create', 'PostController@create')->name('add');
 Route::post('/post', 'PostController@store');
 Route::patch('/post/{id}', 'PostController@update');
 Route::get('/post/{id}/edit', 'PostController@edit');

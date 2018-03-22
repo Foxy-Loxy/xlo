@@ -7,10 +7,10 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item {{ (\Request::route()->getName() == 'home') ? 'active' : '' }}">
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{ (\Request::route()->getName() == 'add') ? 'active' : '' }}">
             <a class="nav-link" href="/post/create">Add</a>
           </li>
           <li class="nav-item">
@@ -30,10 +30,10 @@
               </form>
             </li>
           @else
-          	<li class="nav-item">
+          	<li class="nav-item {{ (\Request::route()->getName() == 'login') ? 'active' : '' }}">
              		<a href="/login" class="nav-link">Login</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ (\Request::route()->getName() == 'register') ? 'active' : '' }}">
              	<a href="/register" class="nav-link">Register</a>
             </li>
           @endif
