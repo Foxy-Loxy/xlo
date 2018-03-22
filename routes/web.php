@@ -28,9 +28,9 @@ Route::post('/register', 'RegisterController@store');
 //Post routes
 Route::get('/post/create', 'PostController@create')->name('add');
 Route::post('/post', 'PostController@store');
-Route::patch('/post/{id}', 'PostController@update');
-Route::get('/post/{id}/edit', 'PostController@edit');
-Route::delete('/post/{id}', 'PostController@destroy');
+Route::patch('/post/{post}', 'PostController@edit');
+Route::get('/post/{post}/edit', 'PostController@update');
+Route::delete('/post/{post}', 'PostController@destroy');
 Route::get('/post/{post}', 'PostController@show');
 //Routes for autocomplete field
 Route::get('/get/categories', 'AutoInputController@category');

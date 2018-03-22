@@ -11,11 +11,26 @@
             </div>
         </div>
         <div class="col-6">
-            <p class="text-center"><a href="/post/{{ $post->id }}"><h4> {{ $post->title }}</h4></a></p>
+            <p class="text-center"><a href="/post/{{ $post->id }}/edit"><h4> {{ $post->title }}</h4></a></p>
+                <form style="display:inline-block" method="POST" action="/post/{{ $post->id }}">
+                    {{csrf_field()}} 
+                    {{ method_field('DELETE') }} 
+                    <button type="submit" class="btn btn-danger">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </form>
+                <form  style="display:inline-block" method="GET" action="/post/{{ $post->id }}/edit">
+                    {{csrf_field()}} 
+                    <button type="submit" class="btn btn-success">
+                        <i class="far fa-edit"></i>
+                    </button>
+                </form>
             <br>
             <p>Posted on: {{ $post->created_at }}</p>
             <br>
-            By: {{ $post->user->name }}
+            <p>By: {{ $post->user->name }}</p>  
+            <br>
+            <p>In: {{ $post->category->category_name }}</p>
         </div>
         <div class="col-2">
             <p class="price">Price: {{ $post->price}} UAH</p>
