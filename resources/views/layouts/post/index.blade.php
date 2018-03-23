@@ -35,7 +35,7 @@
             <p>In: {{ $post->category->category_name }}</p>
         </div>
         <div class="col-2">
-            <p class="price {{$post->active == 0 ? 'bg-danger' : ''}}">{{ $post->active == 0 ? 'OFFER IS INACTIVE' : 'Price:' . $post->price . 'UAH }}</p>
+            <p class="price {{$post->active == 0 ? 'bg-danger' : ''}}">{{ $post->active == 0 ? 'OFFER IS INACTIVE' : 'Price:' . $post->price . 'UAH' }}</p>
         </div>
     </div>
     <hr>

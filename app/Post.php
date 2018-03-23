@@ -9,6 +9,7 @@ class Post extends Model
 	protected $fillable = [
         'title', 'body', 'price', 'active', 'category_id', 'user_id'
     ];
+
     //
 	public function index() {
 

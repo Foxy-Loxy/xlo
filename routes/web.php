@@ -35,3 +35,6 @@ Route::get('/post/{post}', 'PostController@show');
 //Routes for autocomplete field
 Route::get('/get/categories', 'AutoInputController@category');
 Route::get('/get/cities', 'AutoInputController@city');
+//Routes for search
+Route::get('/search', 'SearchController@index')->name('search');
+Route::get('/result', 'SearchController@show');
