@@ -26,6 +26,14 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->call(function () {
+            $old = \App\Post::where('created_at', '<=', \Carbon\Carbon::now()->
+                                                                        subDays(14)->
+                                                                        toDateTimeString())->
+                                                                        get();
+            foreach ($old as $post)
+                $post->update(['active' => 0]);
+        })->hourly();
     }
 
     /**

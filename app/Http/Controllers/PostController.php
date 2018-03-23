@@ -15,7 +15,7 @@ class PostController extends Controller
  	
  	public function index() {
 
-		$posts = \App\Post::latest()->get();
+		$posts = \App\Post::latest()->orderBy('active','desc')->get();
 
  		return view('layouts.post.index', compact('posts'));
  	}

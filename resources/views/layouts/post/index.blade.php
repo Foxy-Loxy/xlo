@@ -11,7 +11,8 @@
             </div>
         </div>
         <div class="col-6">
-            <p class="text-center"><a href="/post/{{ $post->id }}/edit"><h4> {{ $post->title }}</h4></a></p>
+            <p class="text-center {{ $post->active == 0 ? 'muted' : '' }}"><a href="/post/{{ $post->id }}"><h4> {{ $post->title }}</h4></a></p>
+            @if( $post->user->id == auth()->id())
                 <form style="display:inline-block" method="POST" action="/post/{{ $post->id }}">
                     {{csrf_field()}} 
                     {{ method_field('DELETE') }} 
@@ -25,6 +26,7 @@
                         <i class="far fa-edit"></i>
                     </button>
                 </form>
+            @endif
             <br>
             <p>Posted on: {{ $post->created_at }}</p>
             <br>
@@ -33,7 +35,7 @@
             <p>In: {{ $post->category->category_name }}</p>
         </div>
         <div class="col-2">
-            <p class="price">Price: {{ $post->price}} UAH</p>
+            <p class="price {{$post->active == 0 ? 'bg-danger' : ''}}">{{ $post->active == 0 ? 'OFFER IS INACTIVE' : 'Price:' . $post->price . 'UAH }}</p>
         </div>
     </div>
     <hr>
