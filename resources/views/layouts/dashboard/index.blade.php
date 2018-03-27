@@ -9,8 +9,10 @@
                     <p class="list-group-item list-group-item-action active text-center ">
                         Favourites
                     </p>
-                    @foreach ($favourites as $favourite)
+                    @foreach ($favouritess as $favourite)
+                        @if( isset($favourite->id) )
                         <a href="/post/{{ $favourite->id }}" class="list-group-item list-group-item-action">{{ $favourite->title }}</a>
+                        @endif
                     @endforeach
                 </div>
                 <hr>

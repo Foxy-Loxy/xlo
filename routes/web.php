@@ -40,5 +40,5 @@ Route::get('/search', 'SearchController@index')->name('search');
 Route::get('/result', 'SearchController@show');
 //Routes for dashboard
 Route::get('/home', 'HomeController@index')->name('dashboard');
-Route::get('/home/favourites/add/{post}', 'HomeController@store');
-Route::get('/home/favourites/remove/{post}', 'HomeController@delete');
+Route::get('/home/favourites/{post}', 'HomeController@store');
+Route::delete('/user/{user}/delete', 'HomeController@delete');

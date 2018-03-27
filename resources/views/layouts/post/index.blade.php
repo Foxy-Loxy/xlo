@@ -12,7 +12,8 @@
         </div>
         <div class="col-6">
             <p class="text-center {{ $post->active == 0 ? 'muted' : '' }}"><a href="/post/{{ $post->id }}"><h4> {{ $post->title }}</h4></a></p>
-            @if( $post->user->id == auth()->id())
+            @if(auth()->check())
+            @if(($post->user->id == auth()->id()) || (auth()->user()->is_admin == true))
                 <form style="display:inline-block" method="POST" action="/post/{{ $post->id }}">
                     {{csrf_field()}} 
                     {{ method_field('DELETE') }} 
@@ -27,8 +28,9 @@
                     </button>
                 </form>
             @endif
+            @endif
             @if (auth()->check())
-                <form  style="display:inline-block" method="GET" action="/home/favourites/add/{{ $post->id }}">
+                <form  style="display:inline-block" method="GET" action="/home/favourites/{{ $post->id }}">
                     {{csrf_field()}}
                     <button type="submit" class="btn @if(\App\Favourite::where('post_id', $post->id)->where('user_id', auth()->id())->exists()) {{ 'btn-primary' }} @else {{ 'btn-secondary' }} @endif">
                         <i class="far fa-star"></i>
@@ -38,7 +40,18 @@
             <br>
             <p>Posted on: {{ $post->created_at }}</p>
             <br>
-            <p>By: {{ $post->user->name }}</p>  
+            <p>By: {{ $post->user->name }}</p>
+            @if (auth()->check())
+            @if ((auth()->user()->is_admin == true) && (auth()->user()->id != $post->user->id))
+            <form  style="display:inline-block" method="POST" action="/user/{{ $post->id }}/delete">
+                {{csrf_field()}}
+                {{ method_field('DELETE') }}
+                <button type="submit" class="btn btn-success">
+                    <i class="far fa-user"></i>
+                </button>
+            </form>
+            @endif
+            @endif
             <br>
             <p>In: {{ $post->category->category_name }}</p>
         </div>

@@ -25,15 +25,16 @@ class User extends Authenticatable
     }
 
     public function favourites() {
-
-        $fav_arr = \App\Favourite::where('user_id', '=', $this->id)->get();
-//        dd($fav_arr);
+        $fav_arr = \App\Favourite::where('user_id', '=', auth()->id())->get();
+        $id_arr = array();
         $post_obj = new \App\Post;
-        foreach ($fav_arr as $fav){
-            $post_obj->where('id', '=', $fav->post_id);
+        if (\App\Favourite::where('user_id', '=', auth()->id())->exists()){
+            foreach ($fav_arr as $fav) {
+                array_push($id_arr, $fav->post_id);
+            }
+            $post_obj = $post_obj->whereIn('id', $id_arr)->get();
         }
-        $post_arr = $post_obj->get();
-        return $post_arr;
+        return $post_obj;
     }
 
     /**

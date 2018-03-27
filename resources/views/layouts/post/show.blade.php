@@ -6,7 +6,7 @@
         <div class="col-8">
             <h3> {{ $post->title }}</h3>
             @if (auth()->check())
-                <form  style="display:inline-block" method="GET" action="/home/favourites/add/{{ $post->id }}">
+                <form  style="display:inline-block" method="GET" action="/home/favourites/{{ $post->id }}">
                     {{csrf_field()}}
                     <button type="submit" class="btn @if(\App\Favourite::where('post_id', $post->id)->where('user_id', auth()->id())->exists()) {{ 'btn-primary' }} @else {{ 'btn-secondary' }} @endif">
                         <i class="far fa-star"></i>
@@ -31,7 +31,7 @@
         <p class="text-center">Contact: {{ $post->user->phone }}</p>
         </div>
     </div>
-    @if ($post->user->id == auth()->id())
+    @if (($post->user->id == auth()->id()) || ($post->user->isadmin == true))
         <hr>
         <h2 class="text-center">Statistics</h2>
         <div class="row" style="text-align: center">

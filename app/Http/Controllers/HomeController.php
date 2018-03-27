@@ -24,10 +24,11 @@ class HomeController extends Controller
     public function index()
     {
         $user = \App\User::find(auth()->id());
-        $favourites = $user->favourites();
+        $favouritess = $user->favourites();
+        //dd($favouritess);
         $user_posts = $user->posts();
 
-        return view('layouts.dashboard.index', compact('favourites', 'user_posts'));
+        return view('layouts.dashboard.index', compact('favouritess', 'user_posts'));
     }
 
     public  function  store(\App\Post $post){
@@ -52,6 +53,13 @@ class HomeController extends Controller
 
 
 
+        return back();
+    }
+
+    public function  delete(\App\User $user){
+        if (auth()->user()->is_admin == true){
+            $user->delete();
+        }
         return back();
     }
 }
