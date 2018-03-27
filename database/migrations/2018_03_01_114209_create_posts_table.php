@@ -25,6 +25,8 @@ class CreatePostsTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+            $table->integer('views');
+            $table->integer('favourites');
             $table->timestamps();
         });
     }

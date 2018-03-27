@@ -109,7 +109,10 @@ class PostController extends Controller
      }
 	 
 	 public function show(\App\Post $post){
-
+        $q = $post->views;
+        $q++;
+ 	    $post->views = $q;
+ 	    $post->save();
 		return view('layouts.post.show', compact('post'));
 
 	 }
@@ -123,5 +126,9 @@ class PostController extends Controller
 
 		return redirect()->home();
 	}
+
+	public function statistic(\App\Post $post) {
+
+    }
 
 }

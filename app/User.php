@@ -20,8 +20,20 @@ class User extends Authenticatable
 
     public function posts() {
 
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class)->get();
 
+    }
+
+    public function favourites() {
+
+        $fav_arr = \App\Favourite::where('user_id', '=', $this->id)->get();
+//        dd($fav_arr);
+        $post_obj = new \App\Post;
+        foreach ($fav_arr as $fav){
+            $post_obj->where('id', '=', $fav->post_id);
+        }
+        $post_arr = $post_obj->get();
+        return $post_arr;
     }
 
     /**

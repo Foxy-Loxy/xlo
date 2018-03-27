@@ -41,4 +41,10 @@ class Post extends Model
 
 	}
 
+	public function  deactiveDate() {
+
+	    return $this->created_at->addDays(14);
+
+    }
+
 }

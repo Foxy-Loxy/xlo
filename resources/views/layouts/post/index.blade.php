@@ -27,6 +27,14 @@
                     </button>
                 </form>
             @endif
+            @if (auth()->check())
+                <form  style="display:inline-block" method="GET" action="/home/favourites/add/{{ $post->id }}">
+                    {{csrf_field()}}
+                    <button type="submit" class="btn @if(\App\Favourite::where('post_id', $post->id)->where('user_id', auth()->id())->exists()) {{ 'btn-primary' }} @else {{ 'btn-secondary' }} @endif">
+                        <i class="far fa-star"></i>
+                    </button>
+                </form>
+            @endif
             <br>
             <p>Posted on: {{ $post->created_at }}</p>
             <br>

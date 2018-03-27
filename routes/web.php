@@ -38,3 +38,7 @@ Route::get('/get/cities', 'AutoInputController@city');
 //Routes for search
 Route::get('/search', 'SearchController@index')->name('search');
 Route::get('/result', 'SearchController@show');
+//Routes for dashboard
+Route::get('/home', 'HomeController@index')->name('dashboard');
+Route::get('/home/favourites/add/{post}', 'HomeController@store');
+Route::get('/home/favourites/remove/{post}', 'HomeController@delete');
