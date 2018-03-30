@@ -25,8 +25,9 @@ class CreatePostsTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->integer('views');
-            $table->integer('favourites');
+            $table->integer('views')->default(0);
+            $table->integer('favourites')->default(0);
+            $table->integer('priority')->default(1); //1 - free post, 2 - promoted post, 3 - category top post (can be only one)
             $table->timestamps();
         });
     }

@@ -45,6 +45,8 @@ class HomeController extends Controller
             $fav->user_id = auth()->id();
             $fav->save();
 
+            \App\PostEvent::addEvent($post, 2);
+
             $q = $post->favourites;
             $q++;
             $post->favourites = $q;

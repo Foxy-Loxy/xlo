@@ -42,3 +42,5 @@ Route::get('/result', 'SearchController@show');
 Route::get('/home', 'HomeController@index')->name('dashboard');
 Route::get('/home/favourites/{post}', 'HomeController@store');
 Route::delete('/user/{user}/delete', 'HomeController@delete');
+//Routes for AJAX requests
+Route::post('/ajax/phone/{post}', 'AjaxController@phone');

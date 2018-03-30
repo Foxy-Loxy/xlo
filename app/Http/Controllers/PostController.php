@@ -109,10 +109,9 @@ class PostController extends Controller
      }
 	 
 	 public function show(\App\Post $post){
-        $q = $post->views;
-        $q++;
- 	    $post->views = $q;
- 	    $post->save();
+
+         \App\PostEvent::addEvent($post, 1);
+
 		return view('layouts.post.show', compact('post'));
 
 	 }
