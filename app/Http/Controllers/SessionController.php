@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\MessageBag;
 
 class SessionController extends Controller
 {
@@ -29,9 +31,8 @@ class SessionController extends Controller
     	$password = request(['password']);
 
     	if(! auth()->attempt(request(['email','password']))){
-
-    		return back();
-
+            $errors = new MessageBag(['password' => ['Email and/or password invalid.']]);
+    		return back()->withErrors($errors)->withInput(Input::except('password'));
     	}
 
     	return redirect()->home(); 

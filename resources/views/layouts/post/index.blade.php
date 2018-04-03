@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-4" style="padding:8px;">
             <div class="image">
-                <img src="/storage/{{ $post->thumbnail['photo_url'] }}" class="img-fluid img-thumbnail rounded" alt="">
+                <img src="/storage/{{ $post->thumbnail()['photo_url'] }}" class="img-fluid img-thumbnail rounded" alt="">
             </div>
         </div>
         <div class="col-6">
@@ -43,7 +43,7 @@
             <p>By: {{ $post->user->name }}</p>
             @if (auth()->check())
             @if ((auth()->user()->is_admin == true) && (auth()->user()->id != $post->user->id))
-            <form  style="display:inline-block" method="POST" action="/user/{{ $post->id }}/delete">
+            <form  style="display:inline-block" method="POST" action="/user/{{ $post->user->id }}/delete">
                 {{csrf_field()}}
                 {{ method_field('DELETE') }}
                 <button type="submit" class="btn btn-success">

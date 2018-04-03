@@ -44,3 +44,6 @@ Route::get('/home/favourites/{post}', 'HomeController@store');
 Route::delete('/user/{user}/delete', 'HomeController@delete');
 //Routes for AJAX requests
 Route::post('/ajax/phone/{post}', 'AjaxController@phone');
+Route::post('/ajax/uploadPhoto', 'AjaxController@uploadPhoto');
+Route::post('/ajax/thumbPhoto', 'AjaxController@thumbnailPhoto');
+Route::post('/ajax/deletePhoto', 'AjaxController@deletePhoto');

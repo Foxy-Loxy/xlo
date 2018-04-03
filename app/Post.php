@@ -37,7 +37,7 @@ class Post extends Model
 
 	public function thumbnail() {
 
-		return $this->hasOne(Photo::class);
+		return \App\Photo::where('post_id', $this->id)->where('type', '1')->first();
 
 	}
 

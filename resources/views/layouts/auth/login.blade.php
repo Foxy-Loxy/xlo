@@ -23,14 +23,10 @@
 				<button type="submit" class="btn btn-primary">Log In</button>
 			</div>
 		</form>
-		@if ($errors->any())
-		    <div class="alert alert-danger">
-		        <ul>
-		            @foreach ($errors->all() as $error)
-		                <li>{{ $error }}</li>
-		            @endforeach
-		        </ul>
-		    </div>
+		@if ($error = $errors->first('password'))
+			<div class="alert alert-danger">
+				{{ $error }}
+			</div>
 		@endif
 	</div>
 @endsection

@@ -37,11 +37,11 @@
                         }
                     });
                 </script>
-                <p class="text-center">Contact: <span id="phone-number"></span><input type="submit" id="phone"
+                <p class="text-center">Contact: <span id="phone-number"></span><input class="btn btn-primary" type="submit" id="phone"
                                                                                       value="Get Phone"></p>
             </div>
         </div>
-        @if (($post->user->id == auth()->id()) || ($post->user->isadmin == true))
+        @if (($post->user->id == auth()->id()) || (auth()->user()->is_admin == 1))
             <hr>
             <h2 class="text-center">Statistics</h2>
             <div class="row" style="text-align: center">
@@ -123,13 +123,13 @@
                                     "borderColor": "rgb(75, 192, 192)",
                                     "lineTension": 0.1
                                 } ,{
-                                    "label": "Favourites",
+                                    "label": "Phone Reveals",
                                     "data": [@foreach($phone_count as $phone) {!! $phone . ',' !!} @endforeach],
                                     "fill": false,
                                     "borderColor": "rgb(208,10,137 )",
                                     "lineTension": 0.1
                                 }, {
-                                    "label": "Phone Reveals",
+                                    "label": "Favourites",
                                     "data": [@foreach($fav_count as $fav) {!! $fav . ',' !!} @endforeach],
                                     "fill": false,
                                     "borderColor": "rgb(182,254,29 )",

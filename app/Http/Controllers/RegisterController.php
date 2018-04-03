@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+//use Dotenv\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -19,15 +21,17 @@ class RegisterController extends Controller
 
 	}
 
-	public function store() {
+	public function store(Request $request) {
 
 		$this->validate(request(), [
 			'name' => 'required',
-			'email' => 'required|email',
-			'phone' => 'required|regex:/(380)[0-9]{9}/',
+			'email' => 'required|email|unique:users',
+			'phone' => 'required|regex:/(380)[0-9]{9}/|unique:users',
 			'city_id' => 'required', 
 			'password' => 'required|confirmed|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/'
 		]);
+
+
 
 
 
@@ -39,14 +43,7 @@ class RegisterController extends Controller
     		'city_id'
 		]);
 		
-		//dd(request());
-
-		//dd($req);
-
     	$req['password'] = bcrypt($req['password']);
-
-
-    	//dd($req);
 
 		$user = \App\User::create($req);
 
