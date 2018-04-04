@@ -118,7 +118,7 @@
             formData.append('post_id', {{ $post->id }});
             @endif
             for (var i = 0, len = document.getElementById('image').files.length; i < len; i++) {
-                formData.append("image" + i, document.getElementById('image').files[i]);
+                formData.append("image[]", document.getElementById('image').files[i]);
                 console.log(i);
             }
             $.ajax({

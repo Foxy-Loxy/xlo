@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AjaxController extends Controller
 {
@@ -17,7 +18,7 @@ class AjaxController extends Controller
     {
 //        dd($request->except('post_id'));
         $this->validate($request, [
-            'image*' => 'mimetypes:image/jpeg,image/png,image/bmp|size:2000|required'
+            'image.*' => 'mimetypes:image/jpeg,image/png,image/bmp|max:2000|required'
         ]);
         if($request->has('edit')){
             $photos = \App\Photo::where('post_id', $request->input('post_id'))->get();
@@ -54,20 +55,24 @@ class AjaxController extends Controller
                 $response['message'] = 'Image Limit Reached';
                 return response()->json($response, 400);
             }
+//            dd($img_arr);
             foreach ($img_arr as $image) {
-                if ($c == 0) {
-                    break;
+                foreach ($image as $img) {
+//                    dd($img);
+                    if ($c == 0) {
+                        break;
+                    }
+                    $filename = $img->store('photos');
+                    $photo = \App\Photo::create([
+                        'user_id' => auth()->id(),
+                        'photo_url' => $filename,
+                        'post_id' => $post_id
+                    ]);
+                    $response['image'][$i]['filename'] = $filename;
+                    $response['image'][$i]['id'] = $photo->id;
+                    $i++;
+                    $c--;
                 }
-                $filename = $image->store('photos');
-                $photo = \App\Photo::create([
-                    'user_id' => auth()->id(),
-                    'photo_url' => $filename,
-                    'post_id' => $post_id
-                ]);
-                $response['image'][$i]['filename'] = $filename;
-                $response['image'][$i]['id'] = $photo->id;
-                $i++;
-                $c--;
             }
             $response['status'] = '200';
             $response['message'] = 'Images Uploaded SUCCESSFULLY';
