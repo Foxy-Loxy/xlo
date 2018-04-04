@@ -2,7 +2,7 @@
 
 XLO Project is open-source implementation of most basic functions of advertising web-service OLX developed by student in educational purposes only.
 
-#####Based on [Laravel 5.4 PHP Framework](https://laravel.com/)
+#####Based on [Laravel 5.4 PHP Framework](https://laravel.com/readme.md)
 
 ###Features
 
